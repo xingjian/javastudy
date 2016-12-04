@@ -1,5 +1,7 @@
 package com.promisepb.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.promisepb.service.DemoService;
 
 /**  
@@ -8,6 +10,7 @@ import com.promisepb.service.DemoService;
  * @version: V1.0
  * 日期:2016年6月21日 下午4:56:55  
  */
+@Service("demoService")
 public class DemoServiceImpl implements DemoService {
 
 	

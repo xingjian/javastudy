@@ -4,7 +4,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.promisepb.service.DemoService;
 
@@ -14,8 +15,9 @@ import com.promisepb.service.DemoService;
  * @version: V1.0
  * 日期:2016年6月21日 下午5:08:43  
  */
-@Component
+@Controller
 @Path("/demo")
+@Scope("prototype")
 public class RestfulDemoService {
 	@Autowired
     private DemoService demoService;
