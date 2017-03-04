@@ -1,0 +1,21 @@
+<?xml  version="1.0"  encoding="UTF-8"  ?>
+<jobs>
+	<job id="student_count"  name="用户数量监控"  groupName="student">
+		<!--任务状态 0禁用 1启用-->
+		<jobStatus>1</jobStatus>
+		<!-- 任务运行时间表达式 -->
+		<cronExpression>*/50 * * * * ?</cronExpression>
+		<!-- 任务描述 -->
+		<description>测试程序</description>
+		<!-- 任务类 -->
+		<targetObject>com.promise.test.TaskInstanceTest</targetObject>
+		<!-- 任务方法 -->
+		<targetMethod>testTaskExecute</targetMethod>
+		<!-- 方法参数 -->
+		<methodParameter>hello world is go!!!!!!</methodParameter>
+		<!-- 是否并发 0禁用 1启用 -->
+		<concurrent>1</concurrent>
+		<!-- 任务执行完成发送email地址 -->
+		<toEmail>xingjian@yeah.net</toEmail>
+	</job>
+</jobs>
