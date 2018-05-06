@@ -1,0 +1,64 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+version=0.1
+description = "ThreadStudy"
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+	mavenLocal()
+    jcenter()
+}
+
+ext{
+	slf4jVersion = "1.7.25"
+	log4jVersion = "1.2.17"
+	junitVersion = '4.12'
+}
+
+dependencies {
+    compile "log4j:log4j:$log4jVersion"
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+	compile "ch.qos.logback:logback-classic:1.1.2"
+	compile "ch.qos.logback:logback-core:1.1.2"
+	testCompile "junit:junit:$junitVersion"
+}
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = "UTF-8"
+
+task createJavaProject  {
+	doLast {
+		sourceSets*.java.srcDirs*.each{ it.mkdirs() }
+		sourceSets*.resources.srcDirs*.each{ it.mkdirs()}
+	}
+}
+
+//上传jar到本地maven库
+apply plugin: 'maven'
+group = 'com.promisepb.study'
+uploadArchives {
+ repositories {
+     mavenDeployer {
+         repository(url: uri('E:\\mavenrepo\\repository'))
+     }
+ }
+}
+
+jar.baseName = project.name
+  
+jar {  
+    from {  
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }  
+        configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }  
+    }  
+    exclude('LICENSE.txt', 'NOTICE.txt', 'rootdoc.txt')  
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'  
+    exclude 'META-INF/NOTICE', 'META-INF/NOTICE.txt'  
+    exclude 'META-INF/LICENSE', 'META-INF/LICENSE.txt'  
+    exclude 'META-INF/DEPENDENCIES'  
+}
+task copyJars(type:Copy) {
+	from configurations.runtime
+	into 'dist'
+}  
