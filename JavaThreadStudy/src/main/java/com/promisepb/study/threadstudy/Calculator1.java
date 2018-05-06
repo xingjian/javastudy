@@ -1,5 +1,5 @@
 /** @文件名: Calculator.java @创建人：邢健  @创建日期： 2014-8-9 上午6:19:12 */
-package com.promise.thread.chapter1;
+package com.promisepb.study.threadstudy;
 
 import java.io.FileWriter;
 import java.io.IOException;
